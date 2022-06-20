@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        Open Trivia
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Trivial</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <div id="container">
+      <div *ngIf="activeQuestion === false">
+        <app-inscription (formCompleted)=onFormCompleted($event)></app-inscription>
+      </div>
+      <div *ngIf="activeQuestion === true">
+        <app-question [expectedProp]="pseudo">></app-question>
+      </div>
+    </div>
+  </ion-content>
+  

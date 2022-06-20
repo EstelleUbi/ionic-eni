@@ -1,0 +1,11 @@
+<div>
+    <h1>Questions</h1>
+    <div>
+        <p>Bonjour {{expectedProp}}</p>
+        <h2>De quelle couleur est le cheval ?</h2>
+        <button (click)="responseSelected(A)">Réponse A</button>
+        <button (click)="responseSelected(B)">Réponse B</button>
+        <button (click)="responseSelected(C)">Réponse C</button>
+    </div>
+    <button *ngIf="activeNext === true">Question suivante</button>
+</div>

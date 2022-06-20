@@ -1,0 +1,16 @@
+<div>
+    <h1>Démarrer le jeu</h1>
+    <div>
+        <p>Pseudo <input type="text" [(ngModel)]="pseudo" /></p>
+        <p>Difficulté 
+            <select type="text" [(ngModel)]="difficulty">
+                <option value="easy">Facile</option>
+                <option value="medium">Intermédiaire</option>
+                <option value="dificult">Difficile</option>
+            </select>
+        </p>
+        <p><input type="radio" [(ngModel)]="save"/> Sauvegarder mes informations</p>
+        <p class="error" ngif="error && error.length > 0">{{error}}</p>
+    </div>
+    <button (click)="controlBeforeStart()">Commencer</button>
+</div>
