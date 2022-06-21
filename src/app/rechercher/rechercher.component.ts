@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { FilmProvider } from '../providers/films.provider';
 
 @Component ({
     selector: 'app-rechercher',
@@ -13,7 +14,7 @@ export class RechercherComponent implements OnInit {
     public error = '';
     public films = [];
 
-    constructor(private alertCrlt: AlertController) {
+    constructor(private alertCrlt: AlertController, private filmProvider: FilmProvider) {
 
     }
 
@@ -46,20 +47,14 @@ export class RechercherComponent implements OnInit {
     }
 
     private lancerRecherche(){
-        this.films = [{
-            title: 'Film 1',
-            year: 1952,
-            poster: 'assets/icon/favicon.png'
-        },
-        {
-            title: 'Film 2',
-            year: 2004,
-            poster: 'assets/icon/favicon.png'
-        },
-        {
-            title: 'Film 3',
-            year: 1997,
-            poster: 'assets/icon/favicon.png'
-        }];
+        this.filmProvider.search(this.title, this.year, this.type).then((result) => {
+            this.films = result;
+        }).catch(async (err) => {
+            const alert = await this.alertCrlt.create({
+                header: 'Impossible de charger les films',
+                message: 'Le serveur n\'a pas renvoyé de films.'
+            });
+            alert.present();
+        });
     }
 }
