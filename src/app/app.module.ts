@@ -7,13 +7,15 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FilmProvider } from './providers/films.provider';
+import { OpenTriviaService } from './providers/trivial.provider';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    FilmProvider],
+    FilmProvider,
+    OpenTriviaService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

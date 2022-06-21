@@ -7,7 +7,7 @@ import { AlertController } from '@ionic/angular';
     styleUrls: ['./inscription.component.scss', './../trivial/trivial.page.scss']
 })
 export class InscriptionComponent implements OnInit {
-    @Output() formCompleted = new EventEmitter<{ success: boolean; pseudo: string }>();
+    @Output() formCompleted = new EventEmitter<{ success: boolean; pseudo: string; difficulty: string }>();
     public pseudo = 'Tely';
     public difficulty = 'easy';
     public save = false;
@@ -43,7 +43,7 @@ export class InscriptionComponent implements OnInit {
     }
 
     private updateScreen() {
-        this.formCompleted.emit({ success: true, pseudo: this.pseudo });
+        this.formCompleted.emit({ success: true, pseudo: this.pseudo, difficulty: this.difficulty });
     }
 }
 

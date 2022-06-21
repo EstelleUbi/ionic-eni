@@ -8,12 +8,14 @@ import { Component } from '@angular/core';
 export class TrivialPage {
   public activeQuestion = false;
   public pseudo = '';
+  public difficulty = '';
 
   constructor() {}
 
-  onFormCompleted(eventData: { success: boolean; pseudo: string }) {
+  onFormCompleted(eventData: { success: boolean; pseudo: string; difficulty: string }) {
     this.activeQuestion = eventData.success;
     this.pseudo = eventData.pseudo;
+    this.difficulty = eventData.difficulty;
   }
 
 }

@@ -1,26 +1,21 @@
-<div class="margin-content">
+<div class="margin-content" *ngIf="score === false">
     <h1>Questions</h1>
     <div>
-        <p>Bonjour {{expectedProp}}</p>
-        <h2>De quelle couleur est le cheval ?</h2>
+        <p>Bonjour {{pseudo}}</p>
+        <h2>{{activeQuestion.question}}</h2>
         <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-button expand="block" (click)="responseSelected(A)">Réponse A</ion-button>
-              </ion-col>
-              <ion-col>
-                <ion-button expand="block" (click)="responseSelected(B)">Réponse B</ion-button>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                    <ion-button expand="block" (click)="responseSelected(C)">Réponse C</ion-button>
-                </ion-col>
-                <ion-col>
-                    <ion-button expand="block" (click)="responseSelected(D)">Réponse D</ion-button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>        
+          <ion-row>
+            <ion-col size="6" *ngFor="let q of activeQuestion.all_answers">
+              <ion-button color="transparent" [ngClass]="{'good' : activeNext && q.correct, 'bad' : activeNext && !q.correct, unknown: !activeNext}" expand="block" (click)="checkResponse(q)">{{q.answer}}</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>   
     </div>
-    <ion-button expand="block" *ngIf="activeNext === true">Question suivante</ion-button>
+    <ion-button (click)="questionSuivante()" expand="block" *ngIf="activeNext === true">Question suivante</ion-button>
+    <ion-button (click)="resultat()" expand="block" *ngIf="endGame === true">Voir mon score</ion-button>
+</div>
+<div class="margin-content" *ngIf="score === true">
+  <h1>Votre score est :</h1>
+  <h2>{{point}}/{{questions.length}}</h2>
+  <ion-button (click)="startGame()" expand="block" *ngIf="endGame === true">Retour</ion-button>
 </div>

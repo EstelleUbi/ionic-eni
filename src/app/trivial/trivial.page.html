@@ -18,7 +18,7 @@
         <app-inscription (formCompleted)=onFormCompleted($event)></app-inscription>
       </div>
       <div *ngIf="activeQuestion === true">
-        <app-question [expectedProp]="pseudo">></app-question>
+        <app-question [pseudo]="pseudo" [difficulty]="difficulty">></app-question>
       </div>
     </div>
   </ion-content>
