@@ -1,33 +1,40 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component ({
     selector: 'app-inscription',
     templateUrl: './inscription.component.html',
-    styleUrls: ['./inscription.component.scss']
+    styleUrls: ['./inscription.component.scss', './../trivial/trivial.page.scss']
 })
 export class InscriptionComponent implements OnInit {
     @Output() formCompleted = new EventEmitter<{ success: boolean; pseudo: string }>();
-    public pseudo = '';
-    public difficulty = '';
+    public pseudo = 'Tely';
+    public difficulty = 'easy';
     public save = false;
-    public error = '';
 
-    constructor(){
+    constructor(private alertCtrl: AlertController){
 
     }
     ngOnInit(): void {
     }
 
-    controlBeforeStart(){
-        this.error = '';
+    async controlBeforeStart(){
 
         if(!this.pseudo || this.pseudo.length < 3){
-            this.error = 'Veuillez renseigner un pseudo de plus de 3 caractères.';
+            const alert = await this.alertCtrl.create({
+                header: 'Informations erronées',
+                message: 'Veuillez renseigner un pseudo de plus de 3 caractères.'
+            });
+            alert.present();
             return;
         }
 
         if(!this.difficulty){
-            this.error = 'Veuillez renseigner un niveau de difficulté.';
+            const alert = await this.alertCtrl.create({
+                header: 'Informations erronées',
+                message: 'Veuillez indiquer une difficulté.'
+            });
+            alert.present();
             return;
         }
 

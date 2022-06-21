@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component ({
     selector: 'app-question',
     templateUrl: './question.component.html',
-    styleUrls: ['./question.component.scss']
+    styleUrls: ['./question.component.scss', './../trivial/trivial.page.scss']
 })
 export class QuestionComponent implements OnInit {
     @Input() expectedProp: string;

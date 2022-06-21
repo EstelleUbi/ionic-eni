@@ -1,11 +1,26 @@
-<div>
+<div class="margin-content">
     <h1>Questions</h1>
     <div>
         <p>Bonjour {{expectedProp}}</p>
         <h2>De quelle couleur est le cheval ?</h2>
-        <button (click)="responseSelected(A)">Réponse A</button>
-        <button (click)="responseSelected(B)">Réponse B</button>
-        <button (click)="responseSelected(C)">Réponse C</button>
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button expand="block" (click)="responseSelected(A)">Réponse A</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button expand="block" (click)="responseSelected(B)">Réponse B</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-button expand="block" (click)="responseSelected(C)">Réponse C</ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button expand="block" (click)="responseSelected(D)">Réponse D</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>        
     </div>
-    <button *ngIf="activeNext === true">Question suivante</button>
+    <ion-button expand="block" *ngIf="activeNext === true">Question suivante</ion-button>
 </div>

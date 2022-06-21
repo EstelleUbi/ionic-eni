@@ -1,9 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-    <a routerLink="/trivial">Aller au trivial poursuite</a>
+    <ion-buttons>
+      <ion-title>
+        Home
+      </ion-title>
+      <ion-button>
+        <ion-icon slot="start" name="game-controller-outline"></ion-icon>
+        <a class="link" routerLink="/trivial">Aller au trivial poursuite</a>
+      </ion-button>
+    </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 
