@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component ({
     selector: 'app-rechercher',
@@ -12,18 +13,22 @@ export class RechercherComponent implements OnInit {
     public error = '';
     public films = [];
 
-    constructor() {
+    constructor(private alertCrlt: AlertController) {
 
     }
 
     ngOnInit(): void {
     }
 
-    rechercher(){
+    async rechercher(){
         this.error = '';
 
         if (!this.title || this.title.length < 3){
-            this.error = 'Veuillez saisir un titre de plus de 3 caractères.';
+            const alert = await this.alertCrlt.create({
+                header: 'Information manquante',
+                message: 'Veuillez saisir un titre de plus de 3 caractères'
+            });
+            alert.present();
             return;
         }
 

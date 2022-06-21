@@ -1,19 +1,39 @@
-<h1>Rechercher un film</h1>
-<p>Titre <input type="text" [(ngModel)]="title" /></p>
-<p>Année <input type="number" [(ngModel)]="year" /></p>
-<p>Type <select type="text" [(ngModel)]="type">
-    <option value="">Tous</option>
-    <option value="movie">Film</option>
-    <option value="serie">Serie</option>
-    <option value="episode">Episode</option>
-</select></p>
-<button (click)="rechercher()">Rechercher</button>
-<p ngIf="error && error.length > 0">{{error}}</p>
-
-<ul ngIf="films && films.length > 0">
-    <li *ngFor="let film of films">
-        <img [src]="film.poster" />
-        <p>{{film.title}} - <span>{{film.year}}</span></p>
-
-    </li>
-</ul>
+<div class="padding-border">
+    <h1>Rechercher un film</h1>
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating">Titre</ion-label>
+            <ion-input type="text" [(ngModel)]="title"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Année</ion-label>
+            <ion-input type="number" [(ngModel)]="year"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Type</ion-label>
+            <ion-select [(ngModel)]="type">
+                <ion-select-option value="">Tous</ion-select-option>
+                <ion-select-option value="movie">Film</ion-select-option>
+                <ion-select-option value="serie">Serie</ion-select-option>
+                <ion-select-option value="episode">Episode</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-button expand="full" (click)="rechercher()">Rechercher</ion-button>
+        <ion-item *ngIf="error && error.length > 0">
+            <p>{{error}}</p>
+        </ion-item>
+    </ion-list>
+    
+    
+    
+    <ion-list *ngIf="films && films.length > 0">
+        <ion-card *ngFor="let film of films">
+            <img [src]="film.poster" />
+            <ion-card-header>
+                <ion-title>{{film.title}}</ion-title>
+            </ion-card-header>
+            <ion-card-content>{{film.year}}</ion-card-content>
+    
+        </ion-card>
+    </ion-list>
+</div>
