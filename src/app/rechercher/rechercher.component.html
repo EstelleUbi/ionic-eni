@@ -29,7 +29,7 @@
     <ion-grid *ngIf="films && films.length > 0">
         <ion-row>
             <ion-col size="2" *ngFor="let film of films">
-                <ion-card>
+                <ion-card [routerLink]="['/details', film.id]">
                     <img [src]="film.image" />
                     <ion-card-header>
                         <ion-title>{{film.title}}</ion-title>

@@ -6,12 +6,9 @@ import { Film } from 'src/app/models/film';
 export class FilmProvider {
     constructor(private http: HttpClient){}
 
-    public search(title: string, year: number, type: string): Promise<Array<any>>{
+    public search(title: string, year: number, type: string): Promise<Array<Film>>{
         return new Promise(async (resolve, reject) => {
             try{
-                let params = new HttpParams();
-                params = params.append('apikey', '745e523e');
-                params = params.append('s', title);
                 const response = await this.http.get('https://ghibliapi.herokuapp.com/films').toPromise();
                 console.log(response);
                 if (response){
@@ -21,6 +18,28 @@ export class FilmProvider {
                 }
             }catch(err){
                 console.log(err);
+                reject('Impossible de retourner la réponse.');
+            }
+        });
+    }
+
+    public details(id: string): Promise<Film>{
+        return new Promise (async (resolve, reject) => {
+            try {
+                let params = new HttpParams();
+                params = params.append('id', id);
+                const response = await this.http.get('https://ghibliapi.herokuapp.com/films', {params}).toPromise();
+                if (response){
+                    const film = new Film();
+                    film.description = response[0].description;
+                    film.title = response[0].title;
+                    film.release_date = response[0].release_date;
+                    film.image = response[0].image;
+                    resolve(film);
+                } else {
+                    reject('Impossible de retourner la réponse.');
+                }
+            }catch(err){
                 reject('Impossible de retourner la réponse.');
             }
         });
