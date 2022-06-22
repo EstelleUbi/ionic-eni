@@ -8,9 +8,9 @@ import { FilmProvider } from '../providers/films.provider';
     styleUrls: ['./rechercher.component.scss']
 })
 export class RechercherComponent implements OnInit {
-    public title = '';
-    public year: number;
-    public type = '';
+    public title = 'Gibli';
+    public year = 2000;
+    public type = 'movie';
     public error = '';
     public films = [];
 
@@ -48,7 +48,7 @@ export class RechercherComponent implements OnInit {
 
     private lancerRecherche(){
         this.filmProvider.search(this.title, this.year, this.type).then((result) => {
-            this.films = result;
+            this.films = result.slice(4, 10);
         }).catch(async (err) => {
             const alert = await this.alertCrlt.create({
                 header: 'Impossible de charger les films',

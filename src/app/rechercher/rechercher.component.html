@@ -26,14 +26,18 @@
     
     
     
-    <ion-list *ngIf="films && films.length > 0">
-        <ion-card *ngFor="let film of films">
-            <img [src]="film.poster" />
-            <ion-card-header>
-                <ion-title>{{film.title}}</ion-title>
-            </ion-card-header>
-            <ion-card-content>{{film.year}}</ion-card-content>
-    
-        </ion-card>
-    </ion-list>
+    <ion-grid *ngIf="films && films.length > 0">
+        <ion-row>
+            <ion-col size="2" *ngFor="let film of films">
+                <ion-card>
+                    <img [src]="film.image" />
+                    <ion-card-header>
+                        <ion-title>{{film.title}}</ion-title>
+                    </ion-card-header>
+                    <ion-card-content>{{film.release_date}}</ion-card-content>
+            
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </div>
