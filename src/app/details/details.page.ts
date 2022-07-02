@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TextToSpeechOriginal } from '@ionic-native/text-to-speech';
 import { Film } from '../models/film';
 import { FilmProvider } from '../providers/films.provider';
 
@@ -12,7 +13,8 @@ export class DetailsPage implements OnInit {
   private id: string;
   private film: Film;
 
-  constructor(private route: ActivatedRoute, private filmP: FilmProvider) {
+  constructor(private route: ActivatedRoute,
+    private filmP: FilmProvider, private tts: TextToSpeechOriginal) {
       this.route.params.subscribe( async (params)=>{
           this.id = params.id;
           try {
@@ -24,6 +26,11 @@ export class DetailsPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  lireDescription(){
+    console.log('Lecture de', this.film.description);
+    this.tts.speak(this.film.description);
   }
 
 }

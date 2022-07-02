@@ -15,5 +15,9 @@
       <ion-card-subtitle>{{film.release_date}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>{{film.description}}</ion-card-content>
+    <ion-button (click)="lireDescription()">
+      <ion-icon slot="end" name="musical-note"></ion-icon>
+      Lire
+    </ion-button>
   </ion-card>
 </ion-content>
